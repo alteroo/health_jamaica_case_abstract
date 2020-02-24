@@ -42,7 +42,7 @@ gnuhealth_version = (2, 8, 2, 9)
 major_version, minor_version, _ = version.split('.', 2)
 major_version = int(major_version)
 minor_version = int(minor_version)
-name = 'trytond_in_patient'
+name = 'trytond_health_abstract_case'
 
 download_url = 'http://downloads.tryton.org/%s.%s/' % (
     major_version, minor_version)
