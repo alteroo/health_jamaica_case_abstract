@@ -15,9 +15,9 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
     icd11_description = fields.Function(
         fields.Text('Main Condition Interpretation'), 'get_icd11_information')
 
-    # icd11_other = fields.MultiValue(fields.Char('Other Conditions'))
-    # icd11_description = fields.Function(
-    #     fields.Text('Other Conditions - Interpretation'), 'get_icd11_other_conditions')
+    icd11_other = fields.Text('Other Conditions')
+    icd11_other_description = fields.Function(
+        fields.Text('Other Conditions - Interpretation'), 'get_icd11_other_conditions')
 
     #  fields.Many2One('gnuhealth.pathology', 'ICD 11', 
         # domain=[('classifier', '=', 'ICD11')], select=True)
@@ -34,10 +34,8 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
     def get_icd11_other_conditions(self, name):
         if not self.icd11_other:
             return ''
-        print("Other")
-        print(self.icd11_other)
-        # return self.build_condition_str(self.icd11)
-        return ''
+        codes = self.icd11_other.split('\n')
+        return ', '.join(codes)
     
     def build_condition_str(self, code):
         try:

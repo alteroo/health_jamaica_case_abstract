@@ -144,9 +144,15 @@
                     </group>
                     <newline/>
                     <group colspan="4" col="6" id="page_inpatient_icd_holder2_grp1">
-                        <separator colspan="4" id="separator_nutrition_notes" string="Other Condition"/>
+                        <separator colspan="4" id="icd11_other" string="Other Condition Codes (ICD11)"/>
                         <newline/>
-                        <field colspan="8" name="info"/>
+                        <field colspan="8" name="icd11_other"/>
+                    </group>
+                    <newline/>
+                    <group colspan="4" col="6" id="page_inpatient_icd_holder2_desc1">
+                        <separator colspan="4" id="icd11_other_description" string="Other Conditions - Interpretation"/>
+                        <newline/>
+                        <field colspan="8" name="icd11_other_description"/>
                     </group>
                     <newline/>
                     <group id="grp_encounter_state" colspan="4" col="6">
