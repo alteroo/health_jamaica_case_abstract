@@ -8,6 +8,8 @@ def register():
     Pool.register(
     	InpatientRegistration,
         module='inpatient', type_='model')
+    Pool.register(
+        module='inpatient', type_='model')
     Pool.register(module='inpatient', type_='wizard')
     
     Pool.register(module='inpatient', type_='report')
