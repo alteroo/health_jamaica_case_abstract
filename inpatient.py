@@ -9,9 +9,8 @@ from .queryicd11 import query_icd11
 
 
 def get_icd_url():
-
     try:
-        icd_uri = config.get('icd', 'uri')
+        icd_uri = config.get('icd', 'api_uri')
     except:
         icd_uri = ''
 
@@ -20,11 +19,23 @@ def get_icd_url():
     return os.environ.get('ICD_CONTAINER_URL', 'http://localhost:7654')
 
 
+def get_coding_tool_url():
+    try:
+        icd_uri = config.get('icd', 'coding_tool_uri')
+    except:
+        icd_uri = '{}/ct11/icd11_mms/en/release'.format(get_icd_url())
+    return icd_uri
+    
+
 class InpatientRegistration(baseInpatient.InpatientRegistration):
     __name__ = 'gnuhealth.inpatient.registration'
 
     icd10 = fields.Many2One('gnuhealth.pathology', 'ICD 10',
-        domain=[('classifier', '=', 'ICD10')] ,select=True)
+        domain=[
+            'OR',
+            ('classifier', '=', 'ICD10'),
+            ('classifier', '=', None)
+        ] ,select=True)
     
     icd11 = fields.Char('Main Condition Code')
     icd11_description = fields.Function(
@@ -45,12 +56,11 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
     re_admiss = fields.Boolean('Re-Admission', select=True)
 
     def get_coding_tool_url(self, ids=None, name=None):
-        url = get_icd_url()
-        return '{}/ct11/icd11_mms/en/release'.format(url)
+        return get_coding_tool_url()
 
     @classmethod
     def default_coding_tool(cls):
-        return get_icd_url()
+        return get_coding_tool_url()
 
     def get_icd_url(self, name=None):
         return get_icd_url()
