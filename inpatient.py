@@ -3,8 +3,22 @@ import requests
 from trytond.pool import Pool
 from trytond.model import ModelView, ModelSQL, fields
 from datetime import datetime
+from trytond.config import config
 from trytond.modules.health_inpatient import health_inpatient as baseInpatient
 from .queryicd11 import query_icd11
+
+
+def get_icd_url():
+
+    try:
+        icd_uri = config.get('icd', 'uri')
+    except:
+        icd_uri = ''
+
+    if icd_uri:
+        return icd_uri
+    return os.environ.get('ICD_CONTAINER_URL', 'http://localhost:7654')
+
 
 class InpatientRegistration(baseInpatient.InpatientRegistration):
     __name__ = 'gnuhealth.inpatient.registration'
@@ -20,8 +34,8 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
     icd11_other_description = fields.Function(
         fields.Text('Other Conditions - Interpretation'), 'get_icd11_other_conditions')
 
-    icd_url = fields.Function(
-        fields.Char('ICD URL'), 'get_icd_url')
+    coding_tool = fields.Function(
+        fields.Char('Coding Tool'), 'get_coding_tool_url')
 
     #  fields.Many2One('gnuhealth.pathology', 'ICD 11', 
         # domain=[('classifier', '=', 'ICD11')], select=True)
@@ -30,8 +44,16 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
     new_diag = fields.Boolean('Newly Diagnosed', select=True)
     re_admiss = fields.Boolean('Re-Admission', select=True)
 
+    def get_coding_tool_url(self, ids=None, name=None):
+        url = get_icd_url()
+        return '{}/ct11/icd11_mms/en/release'.format(url)
+
+    @classmethod
+    def default_coding_tool(cls):
+        return get_icd_url()
+
     def get_icd_url(self, name=None):
-        return os.environ.get('ICD_CONTAINER_URL', 'http://localhost:7654')
+        return get_icd_url()
 
     def get_icd11_information(self, name):
         if not self.icd11:
