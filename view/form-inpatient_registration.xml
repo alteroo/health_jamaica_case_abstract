@@ -94,7 +94,7 @@
             <label name="discharge_plan"/>
             <field name="discharge_plan"/>
         </page>
-        <page string="MRCA" id="page_inpatient_icd">
+        <page string="MRCA (Abstract)" id="page_inpatient_icd">
             <notebook>
                 <page string="ICD 10" id="icd10">
                     <group colspan="4" col="4" id="page_inpatient_icd_holder1">
@@ -107,15 +107,15 @@
                         <field name="re_admiss"/>
                     </group>
                     <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp1">
-                        <separator colspan="4" id="separator_nutrition_notes" string="Other Condition"/>
+                        <separator colspan="4" id="separator_nutrition_notes" string="Other Condition Codes (ICD10)"/>
                         <newline/>
-                        <field colspan="8" name="info"/>
+                        <field colspan="8" height="160" name="icd10_other"/>
                     </group>
                     <newline/>
                     <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp2">
-                        <separator colspan="4" id="separator_nutrition_notes" string="Procedures"/>
+                        <separator colspan="4" id="separator_nutrition_notes" string="ICD 10 Procedures"/>
                         <newline/>
-                        <field colspan="8" name="info"/>
+                        <field colspan="8" height="160" name="icd10_procedures"/>
                     </group>
                     <newline/>
                     <group id="grp_encounter_state" colspan="4" col="6">
@@ -164,68 +164,10 @@
                         <field name="disposition" colspan="2"/>
                         <label name="discharge_date"/>
                         <field name="discharge_date" colspan="1"/>
-                        <button name="confirmed" string="Discharge" icon="icon-ok"/>
+                        <button name="save" string="Save" icon="icon-ok"/>
                     </group>
                 </page>
             </notebook>
         </page>
-        <!-- <page string="MRCA" id="page_inpatient_icd">
-            <notebook>
-                <page string="ICD 10" id="icd10">
-                    <group colspan="4" col="4" id="page_inpatient_icd_holder1">
-                        <separator colspan="4" id="separator_nutrition_notes" string="Main Condition"/>
-                        <field colspan="2" name="main"/>
-                    </group>
-                    <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp1">
-                        <separator colspan="4" id="separator_nutrition_notes" string="Other Condition"/>
-                        <newline/>
-                        <field colspan="8" name="info"/>
-                    </group>
-                    <newline/>
-                    <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp2">
-                        <separator colspan="4" id="separator_nutrition_notes" string="Procedures"/>
-                        <newline/>
-                        <field colspan="8" col="6"/>
-                    </group>
-                    <newline/>
-                    <group id="grp_encounter_state" colspan="4" col="6">
-                        <label name="encounter"/>
-                        <field name="encounter" colspan="3"/>
-                        <label name="state"/>
-                        <field name="state"/>
-                        <label name="dispo"/>
-                        <field name="dispo" colspan="3"/>
-                        <label name="discharge"/>
-                        <field name="discharge" colspan="1"/>
-                        <button name="confirmed" string="Confirm" icon="icon-ok"/>
-                    </group>
-                </page>
-                <page string="ICD 11" id="icd11">
-                    <group colspan="4" col="6" id="page_inpatient_icd_holder2">
-                        <group colspan="4" id="page_inpatient_icd_code1">
-                            <separator colspan="4" id="separator_nutrition_notes" string="Main Condition"/>
-                            <field colspan="2" name="other"/>
-                        </group>
-                        <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp3">
-                            <separator colspan="4" id="separator_nutrition_notes" string="Other Condition"/>
-                            <newline/>
-                            <field colspan="8" name="info"/>
-                        </group>
-                        <newline/>
-                        <group id="grp_encounter_state" colspan="4" col="6">
-                           <label name="encounter"/>
-                           <field name="encounter" colspan="3"/>
-                           <label name="state"/>
-                           <field name="state"/>
-                           <label name="dispo"/>
-                           <field name="dispo" colspan="3"/>
-                           <label name="discharge"/>
-                           <field name="discharge" colspan="1"/>
-                           <button name="confirmed" string="Confirm" icon="icon-ok"/>
-                    </group>
-                    </group>
-                </page>
-            </notebook>
-        </page> -->
     </notebook>
 </form>

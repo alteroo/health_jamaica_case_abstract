@@ -25,7 +25,8 @@ def get_coding_tool_url():
     except:
         icd_uri = '{}/ct11/icd11_mms/en/release'.format(get_icd_url())
     return icd_uri
-    
+
+  
 
 class InpatientRegistration(baseInpatient.InpatientRegistration):
     __name__ = 'gnuhealth.inpatient.registration'
@@ -50,10 +51,11 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
 
     #  fields.Many2One('gnuhealth.pathology', 'ICD 11', 
         # domain=[('classifier', '=', 'ICD11')], select=True)
-    other = fields.Char('Other Condition')
-    procedures = fields.Char('Procedures')
+    icd10_other = fields.One2Many('gnuhealth.pathology', 'code','Other Conditions (ICD 10)')
+    icd10_procedures = fields.Many2One('gnuhealth.procedure','Procedures (ICD 10)')
     new_diag = fields.Boolean('Newly Diagnosed', select=True)
     re_admiss = fields.Boolean('Re-Admission', select=True)
+
 
     def get_coding_tool_url(self, ids=None, name=None):
         return get_coding_tool_url()
@@ -105,3 +107,8 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
     @classmethod
     def __setup__(cls):
 	    super(InpatientRegistration, cls).__setup__()
+
+    # @classmethod
+    # @ModelView.button
+    # def save(cls, abstract):
+        

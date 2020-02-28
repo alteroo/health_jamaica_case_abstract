@@ -13,6 +13,11 @@
             <field name="res_model">gnuhealth.patient.rounding</field>
         </record>
 
+        <record model="ir.action.act_window" id="inpatient_tree_sequence_view">
+            <field name="name">Tree Form Layout</field>
+            <field name="res_model">gnuhealth.inpatient.registration</field>
+        </record>
+
         <record model="ir.action.act_window.view" id="act_gnuhealth_patient_rounding_tree">
             <field name="sequence" eval="10"/>
             <field name="view" ref="health_nursing.gnuhealth_patient_rounding_tree"/>
@@ -36,10 +41,20 @@
              <field name="type">tree</field>
              <field name="name">tree-inpatient_registration</field>
         </record>
+        <record model="ir.ui.view" id="tree_inpatient_sequence">
+             <field name="model">gnuhealth.inpatient.registration</field>
+             <field name="type">tree</field>
+             <field name="name">tree-inpatient_sequence</field>
+        </record>
         <!-- Link the updated form to the original -->
         <record model="ir.action.act_window.view" id="health_inpatient.act_inpatient_registration_list_view">
             <field name="sequence" eval="10"/>
             <field name="view" ref="tree_inpatient_reg"/>
+            <field name="act_window" ref="health_inpatient.gnuhealth_action_inpatient_registration"/>
+        </record>
+        <record model="ir.action.act_window.view" id="inpatient_tree_sequence">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="tree_inpatient_sequence"/>
             <field name="act_window" ref="health_inpatient.gnuhealth_action_inpatient_registration"/>
         </record>
         <record model="ir.action.act_window.view" id="health_inpatient.act_inpatient_registration_form_view">
