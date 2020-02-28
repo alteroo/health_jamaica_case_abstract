@@ -25,7 +25,7 @@ def get_coding_tool_url():
     except:
         icd_uri = '{}/ct11/icd11_mms/en/release'.format(get_icd_url())
     return icd_uri
-    
+
 
 class InpatientRegistration(baseInpatient.InpatientRegistration):
     __name__ = 'gnuhealth.inpatient.registration'
