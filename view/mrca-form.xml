@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<form string="MRCA (Abstract)">
+    <group colspan="4" id="group_admin_data" col="12" string="Patient">
+        <field name="patient" colspan="2" xexpand="1" />
+    </group>
+    <newline />
+    <notebook>
+        <page string="MRCA (Abstract)" id="page_inpatient_icd">
+            <notebook>
+                <page string="ICD 10" id="icd10">
+                    <group colspan="4" col="4" id="page_inpatient_icd_holder1">
+                        <separator colspan="4" id="separator_nutrition_notes" string="Main Condition"/>
+                        <field colspan="2" name="icd10"/>
+                        <label name="new_diag"/>
+                        <field name="new_diag" width="10"/>
+                        <newline/>
+                        <label name="re_admiss"/>
+                        <field name="re_admiss" width="10"/>
+                    </group>
+                    <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp1">
+                        <separator colspan="4" id="separator_nutrition_notes" string=""/>
+                        <newline/>
+                        <field colspan="8" height="160" name="icd10_other"/>
+                    </group>
+                    <newline/>
+                    <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp2">
+                        <separator colspan="4" id="separator_nutrition_notes" string=""/>
+                        <newline/>
+                        <field colspan="8" height="160" name="icd10_procedures"/>
+                    </group>
+                    <newline/>
+                    <!--  <group id="grp_encounter_state" colspan="4" col="6">
+                        <label name="encounter"/>
+                        <field name="encounter" colspan="3"/>
+                        <label name="state"/>
+                        <field name="state" readonly="1"/>
+                        <label name="disposition"/>
+                        <field name="disposition" colspan="2"/>
+                        <label name="discharge_date"/>
+                        <field name="discharge_date" colspan="1"/>
+                        <button name="confirmed" string="Discharge" icon="icon-ok"/>
+                    </group> -->
+                </page>
+                <page string="ICD 11" id="icd11">
+                    <group colspan="4" col="4" id="page_inpatient_icd_holder2">
+                        <separator colspan="4" id="separator_nutrition_notes" string="Main Condition Code (ICD11)"/>
+                        <field colspan="2" name="icd11"/>
+                        <label name="coding_tool"/>
+                        <field name="coding_tool" widget="url"/>
+                    </group>
+                    <group colspan="4" col="6" id="page_inpatient_icd_holder2_desc1">
+                        <separator colspan="4" id="icd11_description" string="Main Condition - Interpretation"/>
+                        <newline/>
+                        <field colspan="8" name="icd11_description"/>
+                    </group>
+                    <newline/>
+                    <group colspan="4" col="6" id="page_inpatient_icd_holder2_grp1">
+                        <separator colspan="4" id="icd11_other" string="Other Condition Codes (ICD11)"/>
+                        <newline/>
+                        <field colspan="8" name="icd11_other"/>
+                    </group>
+                    <newline/>
+                    <group colspan="4" col="6" id="page_inpatient_icd_holder2_desc1">
+                        <separator colspan="4" id="icd11_other_description" string="Other Conditions - Interpretation"/>
+                        <newline/>
+                        <field colspan="8" height="160" name="icd11_other_description"/>
+                    </group>
+                    <newline/>
+                    <!-- <group id="grp_encounter_state" colspan="4" col="6">
+                        <label name="encounter"/>
+                        <field name="encounter" colspan="3"/>
+                        <label name="state"/>
+                        <field name="state" readonly="1"/>
+                        <label name="disposition"/>
+                        <field name="disposition" colspan="2"/>
+                        <label name="discharge_date"/>
+                        <field name="discharge_date" colspan="1"/>
+                        <button name="save" string="Save" icon="icon-ok"/>
+                    </group> -->
+                </page>
+            </notebook>
+        </page>
+    </notebook>
+</form>

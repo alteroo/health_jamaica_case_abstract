@@ -4,7 +4,6 @@ from trytond.pool import Pool
 from trytond.model import ModelView, ModelSQL, fields
 from datetime import datetime
 from trytond.config import config
-from trytond.modules.health_inpatient import health_inpatient as baseInpatient
 from .queryicd11 import query_icd11
 
 
@@ -27,8 +26,9 @@ def get_coding_tool_url():
     return icd_uri
 
 
-class InpatientRegistration(baseInpatient.InpatientRegistration):
-    __name__ = 'gnuhealth.inpatient.registration'
+class CaseAbstract(ModelSQL, ModelView):
+    'Medical Record Case Abstract'
+    __name__ = 'mrca.mrca'
 
     icd10 = fields.Many2One('gnuhealth.pathology', 'ICD 10',
         domain=[
@@ -37,6 +37,8 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
             ('classifier', '=', None)
         ] ,select=True)
     
+    patient = fields.Many2One('gnuhealth.inpatient.registration', 'Patient', domain=[('state', '=', 'done')], required=True, select=True)
+
     icd11 = fields.Char('Main Condition Code')
     icd11_description = fields.Function(
         fields.Text('Main Condition Interpretation'), 'get_icd11_information')
@@ -48,10 +50,9 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
     coding_tool = fields.Function(
         fields.Char('Coding Tool'), 'get_coding_tool_url')
 
-    #  fields.Many2One('gnuhealth.pathology', 'ICD 11', 
-        # domain=[('classifier', '=', 'ICD11')], select=True)
-    other = fields.Char('Other Condition')
-    procedures = fields.Char('Procedures')
+    icd10_other = fields.Many2Many('mrca.mrca_patient.abstract', 'code', 'code','Other Conditions (ICD 10)')
+    icd10_procedures = fields.Many2Many('mrca.mrca_patient.abstract', 'description', 'description','Procedures (ICD 10)')
+
     new_diag = fields.Boolean('Newly Diagnosed', select=True)
     re_admiss = fields.Boolean('Re-Admission', select=True)
 
@@ -104,4 +105,15 @@ class InpatientRegistration(baseInpatient.InpatientRegistration):
 
     @classmethod
     def __setup__(cls):
-	    super(InpatientRegistration, cls).__setup__()
+	    super(CaseAbstract, cls).__setup__()
+
+class PatientAbstract(ModelSQL, ModelView):
+    'Pathology-Icpm'
+    __name__ = 'mrca.mrca_patient.abstract'
+
+    code = fields.Many2One('gnuhealth.pathology', 'ICD10')
+    description = fields.Many2One('gnuhealth.procedure', 'Description')
+
+    @classmethod
+    def __setup__(cls):
+        super(PatientAbstract, cls).__setup__()
