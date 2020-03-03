@@ -6,7 +6,8 @@ from .inpatient import *
 
 def register():
     Pool.register(
-    	InpatientRegistration,
+        CaseAbstract,
+        PatientAbstract,
         module='inpatient', type_='model')
     Pool.register(
         module='inpatient', type_='model')
