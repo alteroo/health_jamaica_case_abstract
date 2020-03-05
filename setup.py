@@ -144,3 +144,4 @@ setup(name=name,
     test_loader='trytond.test_loader:Loader',
     tests_require=tests_require,
     )
+
