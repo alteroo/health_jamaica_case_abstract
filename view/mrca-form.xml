@@ -8,14 +8,14 @@
         <page string="MRCA (Abstract)" id="page_inpatient_icd">
             <notebook>
                 <page string="ICD 10" id="icd10">
-                    <group colspan="4" col="4" id="page_inpatient_icd_holder1">
-                        <separator colspan="4" id="separator_nutrition_notes" string="Main Condition"/>
-                        <field colspan="2" name="icd10"/>
+                    <group colspan="4" col="6" id="page_inpatient_icd_holder1">
+                        <separator colspan="6" id="separator_nutrition_notes" string="Main Condition"/>
+                        <field colspan="2" xexpand="1" name="icd10"/>
                         <label name="new_diag"/>
-                        <field name="new_diag" width="10"/>
+                        <field name="new_diag"/>
                         <newline/>
                         <label name="re_admiss"/>
-                        <field name="re_admiss" width="10"/>
+                        <field name="re_admiss"/>
                     </group>
                     <group colspan="4" col="6" id="page_inpatient_icd_holder1_grp1">
                         <separator colspan="4" id="separator_nutrition_notes" string=""/>
