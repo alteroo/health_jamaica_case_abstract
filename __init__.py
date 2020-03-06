@@ -2,15 +2,15 @@
 # this repository contains the full copyright notices and license terms.
 
 from trytond.pool import Pool
-from .inpatient import *
+from .healthAbstract import *
+
 
 def register():
     Pool.register(
         CaseAbstract,
         PatientAbstract,
-        module='inpatient', type_='model')
+        module='health_jamaica_case_abstract', type_='model')
     Pool.register(
-        module='inpatient', type_='model')
-    Pool.register(module='inpatient', type_='wizard')
-    
-    Pool.register(module='inpatient', type_='report')
+        module='health_jamaica_case_abstract', type_='wizard')
+    Pool.register(
+        module='health_jamaica_case_abstract', type_='report')

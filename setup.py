@@ -42,7 +42,7 @@ gnuhealth_version = (2, 8, 2, 9)
 major_version, minor_version, _ = version.split('.', 2)
 major_version = int(major_version)
 minor_version = int(minor_version)
-name = 'trytond_health_abstract_case'
+name = 'trytond_health_jamaica_case_abstract'
 
 download_url = 'http://downloads.tryton.org/%s.%s/' % (
     major_version, minor_version)
@@ -84,16 +84,17 @@ setup(name=name,
         "Bug Tracker": 'https://bugs.tryton.org/',
         "Documentation": 'https://docs.tryton.org/',
         "Forum": 'https://www.tryton.org/forum',
-        "Source Code": 'https://hg.tryton.org/modules/inpatient',
+        "Source Code": 'https://hg.tryton.org/modules/health_jamaica_case_abstract',
         },
     keywords='',
-    package_dir={'trytond.modules.inpatient': '.'},
+    package_dir={'trytond.modules.health_jamaica_case_abstract': '.'},
     packages=(
-        ['trytond.modules.inpatient'] +
-        ['trytond.modules.inpatient.%s' % p for p in find_packages()]
+        ['trytond.modules.health_jamaica_case_abstract']
+        + ['trytond.modules.health_jamaica_case_abstract.%s' % p
+            for p in find_packages()]
         ),
     package_data={
-        'trytond.modules.inpatient': (info.get('xml', [])
+        'trytond.modules.health_jamaica_case_abstract': (info.get('xml', [])
             + ['tryton.cfg', 'view/*.xml', 'locale/*.po', '*.fodt',
                 'icons/*.svg', 'tests/*.rst']),
         },
@@ -104,7 +105,8 @@ setup(name=name,
         'Intended Audience :: Developers',
         'Intended Audience :: Financial and Insurance Industry',
         'Intended Audience :: Legal Industry',
-        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+        'License :: OSI Approved :: '
+        'GNU General Public License v3 or later (GPLv3+)',
         'Natural Language :: Bulgarian',
         'Natural Language :: Catalan',
         'Natural Language :: Chinese (Simplified)',
@@ -138,8 +140,8 @@ setup(name=name,
     zip_safe=False,
     entry_points="""
     [trytond.modules]
-    inpatient = trytond.modules.inpatient
-    """,
+    health_jamaica_case_abstract = trytond.modules.health_jamaica_case_abstract
+    """,  # noqa: E501
     test_suite='tests',
     test_loader='trytond.test_loader:Loader',
     tests_require=tests_require,

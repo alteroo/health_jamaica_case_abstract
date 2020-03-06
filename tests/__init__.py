@@ -2,8 +2,8 @@
 # this repository contains the full copyright notices and license terms.
 
 try:
-    from trytond.modules.inpatient.tests.test_inpatient import suite
+    from trytond.modules.health_jamaica_case_abstract.tests.test_health_jamaica_case_abstract import suite  # noqa: E501
 except ImportError:
-    from .test_inpatient import suite
+    from .test_health_jamaica_case_abstract import suite
 
 __all__ = ['suite']

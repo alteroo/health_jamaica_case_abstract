@@ -50,8 +50,8 @@ class CaseAbstract(ModelSQL, ModelView):
     coding_tool = fields.Function(
         fields.Char('Coding Tool'), 'get_coding_tool_url')
 
-    icd10_other = fields.Many2Many('mrca.mrca_patient.abstract', 'code', 'code','Other Conditions (ICD 10)')
-    icd10_procedures = fields.Many2Many('mrca.mrca_patient.abstract', 'description', 'description','Procedures (ICD 10)')
+    icd10_other = fields.Many2Many('mrca.mrca_patient.abstract', 'case', 'code','Other Conditions (ICD 10)')
+    icd10_procedures = fields.Many2Many('mrca.mrca_patient.abstract', 'case', 'description','Procedures (ICD 10)')
 
     new_diag = fields.Boolean('Newly Diagnosed', select=True)
     re_admiss = fields.Boolean('Re-Admission', select=True)
@@ -111,6 +111,7 @@ class PatientAbstract(ModelSQL, ModelView):
     'Pathology-Icpm'
     __name__ = 'mrca.mrca_patient.abstract'
 
+    case = fields.Many2One('mrca.mrca','Case', required=True, select=True)
     code = fields.Many2One('gnuhealth.pathology', 'ICD10')
     description = fields.Many2One('gnuhealth.procedure', 'Description')
 
